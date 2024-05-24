@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.4.0/chartjs-plugin-annotation.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <canvas id="graph" style="width: 100%; max-width: 50vw; max-height: 44vh;"></canvas>
+            <canvas id="meter" style="width: 100%; max-width: 40vw; max-height: 44vh;"></canvas>
+            <div id="record-list" style="max-width: 40vw; max-height: 44vh; display: inline-block"></div>
+            <canvas id="daily-graph" style="width: 100%; max-width: 50vw; max-height: 44vh; display: inline-block;"></canvas>
+        </div>
+        <!-- <button onclick="update()" style="display: inline-block"> update </button> -->
+    </body>
+
+    <script type="text/javascript" src="javascript.js"></script>
+    <script type="text/javascript" src="api.js"></script>
+</html>

@@ -1,0 +1,49 @@
+@keyframes fade-in {
+    100% {
+        opacity: 1 ;
+    }
+}
+
+@keyframes fade-out {
+    100% {
+        opacity: 0 ;
+    }
+}
+
+body {
+    background-color: rgb(225, 238, 250);
+}
+
+.container {
+    display: flex ;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center ;
+    padding: 1% 0% ;
+}
+
+.container > * {
+    padding: 1% ;
+}
+
+#record-list > * {
+    background-color: aliceblue ;
+    width: 100% ;
+    height: 17% ;
+    margin: 1% 0% ;
+    border-radius: 10px ;
+    border: 2px solid #999 ;
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+    opacity: 0 ;
+    animation: fade-in 800ms forwards ;
+}
+
+#record-list {
+    width: 40vw ;
+    height: 45vh ;
+    background-color: aliceblue;
+    border: solid 2px ;
+    border-radius: 1vw;
+}
