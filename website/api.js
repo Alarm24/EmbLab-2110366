@@ -21,6 +21,7 @@ dataRef1.on("value", function (snapshot) {
     if (snapshot.exists()) {
         var water = snapshot.val();
         // update(water) ;
+        
         setNewWaterLevel(parseFloat(water)) ;
         console.log("Water level:", water); // Log the fetched value
     } else {

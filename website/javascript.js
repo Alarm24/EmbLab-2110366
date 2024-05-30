@@ -7,14 +7,14 @@ let cnt = 0 ;
 let waterLevel = 0.0 ; // current water level in cm
 let previous = 0.0 ;  // water level in previous interval
 let minLevel = 0.0 ;    // min water level in cm
-let threshold = 7.0 ; // threshold level in cm for alerting
+let threshold = 5.0 ; // threshold level in cm for alerting
 let maxLevel = 12.0 ;  // max water level in cm
 let maxRecords = 10 ;
 let maxDays = 5 ;
 let hasAlerted = false ;
 let alertDuration = 0 ; // how long of system has been alerted in sec
-let interval = 5 ; // update interval in sec
-let subInterval = 5 ; // amount of main interval update before second graph updates
+let interval = 3 ; // update interval in sec
+let subInterval = 10 ; // amount of main interval update before second graph updates
 let avg = 0.0 ; // avg this day
 let max = 0.0 ; // max this day
 let buff = 0.0 ; // buffer
@@ -197,10 +197,15 @@ function getRecordsLabel(length) {
 
 function setNewWaterLevel(newWaterLevel) {
     if (isNaN(newWaterLevel)) buff += previous ;
+    else if (Math.abs(waterLevel - newWaterLevel) > 0.6*maxLevel) buff += previous ;
     else                      buff += newWaterLevel ;
     buffCnt++ ;
     console.log(buff, buffCnt) ;
 }
+
+let test = [ 0, 0, 1, 3, 4, 5, 6, 7, 6, 6, 8, 6, 5, 3, 2, 5, 6, 7 ] ;
+let i = 0 ;
+let mxx = test.length ;
 
 function update() {
     // waterLevel = Math.random()*4 ;
@@ -208,9 +213,16 @@ function update() {
     // console.log("ok") ;
 
     previous = waterLevel ;
-    waterLevel = parseFloat((buff/buffCnt).toFixed(2)) ;
-    buff = waterLevel ;
-    buffCnt = 1 ;
+    if (i < mxx) {
+        waterLevel = test[i] ;
+        i++ ;
+    }
+
+    // previous = waterLevel ;
+    // waterLevel = parseFloat((buff/buffCnt).toFixed(2)) ;
+    // buff = waterLevel ;
+    // buffCnt = 1 ;
+
     // waterLevel = parseFloat(newWaterLevel) ;
 
     // waterLevel += Math.random()*4 + (waterLevel < threshold ? 0 : -10) ;
@@ -220,6 +232,8 @@ function update() {
 
     if (waterLevel < 0)
         waterLevel = 0 ;
+
+    // if (Math.abs(waterLevel - previous) > 0.3*maxLevel)
 
     avg = ((cnt*avg + waterLevel) / (cnt+1)).toFixed(2) ;
     max = Math.max(max, waterLevel).toFixed(2) ;
